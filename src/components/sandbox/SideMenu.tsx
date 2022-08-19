@@ -10,11 +10,15 @@ import {
 } from '@ant-design/icons'
 
 import './SideMenu.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
 const SideMenu = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [collapsed, setCollapsed] = useState(false)
+
   const items = [
     {
       key: '/home',
@@ -48,19 +52,19 @@ const SideMenu = () => {
       ],
     },
   ]
-  const navigate = useNavigate()
+  console.log(location)
 
   const itemClick = (e: MenuItem) => {
     navigate(`${e!.key}`)
   }
-  const [collapsed, setCollapsed] = useState(false)
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo">全球新闻发布系统</div>
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={['/home']}
+        selectedKeys={[location.pathname]}
         items={items}
         onClick={itemClick}
       />

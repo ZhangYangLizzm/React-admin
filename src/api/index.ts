@@ -1,5 +1,10 @@
 import request from './request'
-import { useNavigate } from 'react-router-dom'
+export const request_register = async (username: string, password: string) => {
+  const res = await request.post('/register', { username, password })
+  if (res.status === 200) return true
+  return false
+}
+
 export const request_login = async (username: string, password: string) => {
   const res = await request.post('/login', { username, password })
   if (res.status === 200) {
