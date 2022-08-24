@@ -1,36 +1,66 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { request_register } from '../../api'
+import md5 from 'crypto-js/md5'
+import './UserRegister.less'
+import history from '../../router/history'
 const userRegister = () => {
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const canRegister = password === confirmPassword ? false : true
+  const [errorMessage, setErrorMessage] = useState('')
+
   const tryRegister = async (e: React.MouseEvent) => {
     e.preventDefault()
-    const registerStatus = await request_register(username, password)
-    if (registerStatus) {
+    try {
+      await request_register(username, email, account, md5(password).toString())
       navigate('/login')
-      return
+    } catch (err) {
+      setErrorMessage((err as any).response.data.err)
     }
   }
+
   return (
     <div id="register">
       <form>
-        <p>
-          账号：
+        <div>
+          <label> 用户名：</label>
           <input
             type="text"
-            placeholder="输入账号"
+            placeholder="用户名"
             value={username}
             onInput={(e: React.FormEvent<HTMLInputElement>) =>
               setUsername((e.target as HTMLInputElement).value)
             }
           />
-        </p>
-        <p>
-          密码：
+        </div>
+        <div>
+          <label> 邮箱：</label>
+          <input
+            placeholder="输入邮箱"
+            value={email}
+            type="email"
+            onInput={(e: React.FormEvent<HTMLInputElement>) =>
+              setEmail((e.target as HTMLInputElement).value)
+            }
+          />
+        </div>
+        <div>
+          <label> 账号：</label>
+          <input
+            type="text"
+            placeholder="输入账号"
+            value={account}
+            onInput={(e: React.FormEvent<HTMLInputElement>) =>
+              setAccount((e.target as HTMLInputElement).value)
+            }
+          />
+        </div>
+        <div>
+          <label> 密码：</label>
           <input
             type="password"
             placeholder="输入密码"
@@ -40,22 +70,21 @@ const userRegister = () => {
             }}
             autoComplete="true"
           />
-        </p>
-        <p>
-          再次确认密码：
+        </div>
+        <div>
+          <label>确认密码：</label>
           <input
             type="password"
-            placeholder="输入密码"
+            placeholder="确认密码"
             value={confirmPassword}
             onInput={(e: React.FormEvent<HTMLInputElement>) => {
               setConfirmPassword((e.target as HTMLInputElement).value)
             }}
             autoComplete="true"
           />
-        </p>
-        <button onClick={tryRegister} disabled={canRegister}>
-          注册
-        </button>
+        </div>
+        <button onClick={() => history.push('/login')}>返回登录页</button>
+        <button onClick={tryRegister}>注册</button>
       </form>
     </div>
   )

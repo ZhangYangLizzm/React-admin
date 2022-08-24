@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Layout, Menu, MenuItemProps, SiderProps } from 'antd'
 import type { MenuProps } from 'antd'
@@ -11,6 +11,7 @@ import {
 
 import './SideMenu.css'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { getAuthData } from '../../api'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -18,41 +19,13 @@ const SideMenu = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const [collapsed, setCollapsed] = useState(false)
+  const [items, setItems] = useState([])
 
-  const items = [
-    {
-      key: '/home',
-      icon: <UserOutlined />,
-      label: '首页',
-    },
-    {
-      key: '/user',
-      icon: <VideoCameraOutlined />,
-      label: '用户管理',
-      children: [
-        {
-          key: '/user-manage',
-          label: '用户列表',
-        },
-      ],
-    },
-    {
-      key: '/role',
-      icon: <UploadOutlined />,
-      label: '权限管理',
-      children: [
-        {
-          key: '/role-manage',
-          label: '角色列表',
-        },
-        {
-          key: '/right-manage',
-          label: '权限列表',
-        },
-      ],
-    },
-  ]
-  console.log(location)
+  useEffect(() => {
+    getAuthData().then((res: any) => {
+      setItems(res)
+    })
+  }, [])
 
   const itemClick = (e: MenuItem) => {
     navigate(`${e!.key}`)

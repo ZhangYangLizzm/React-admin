@@ -5,17 +5,22 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "node:dev": "nodemon nodejs/src/main.ts"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "@types/crypto-js": "^4.1.1",
     "@types/nprogress": "^0.2.0",
     "antd": "^4.22.6",
     "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
     "less": "^4.1.3",
     "less-loader": "^11.0.0",
     "nprogress": "^0.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "yarn": "^1.22.19"
   },

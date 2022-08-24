@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import Nprogress from 'nprogress'
-
+import history from '../router/history'
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: '/news-global',
 })
 
 request.interceptors.request.use(
@@ -23,6 +23,11 @@ request.interceptors.response.use(
     return response.data
   },
   (err) => {
+    //令牌认证失败跳转到登录页
+    if (err.response.data.status === 401) {
+      history.push('/login')
+    }
+
     return Promise.reject(err)
   },
 )

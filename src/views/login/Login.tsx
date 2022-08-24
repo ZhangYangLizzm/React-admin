@@ -1,52 +1,54 @@
 import './Login.less'
 import { request_login } from '../../api'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
+import md5 from 'crypto-js/md5'
+
 const login = () => {
   const navigate = useNavigate()
-  const [username, setUsername] = useState('')
+  const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
   const tryLogin = async (e: React.MouseEvent) => {
     e.preventDefault()
     try {
-      const loginStaus = await request_login(username, password)
-      loginStaus && navigate('/home')
-    } catch (err:any) {
-      alert(err.response.data)
+      await request_login(account, md5(password).toString())
+      navigate('/home')
+    } catch (err) {
+      alert((err as any).response.data)
     }
-  }
-  const jumpRegister = (e: React.MouseEvent) => {
-    e.preventDefault()
-    navigate('/user-register')
   }
   return (
     <div id="Login">
       <form>
-        <p>
-          账号：
+        <div className="form-item">
+          <label className="form-label">Username</label>
           <input
             type="text"
-            placeholder="输入账号"
-            value={username}
+            placeholder="Username"
+            value={account}
             onInput={(e: React.FormEvent<HTMLInputElement>) =>
-              setUsername((e.target as HTMLInputElement).value)
+              setAccount((e.target as HTMLInputElement).value)
             }
           />
-        </p>
-        <p>
-          密码：
+        </div>
+        <div className="form-item">
+          <label className="form-label">Password</label>
           <input
             type="password"
-            placeholder="输入密码"
+            placeholder="Password"
             value={password}
             onInput={(e: React.FormEvent<HTMLInputElement>) => {
               setPassword((e.target as HTMLInputElement).value)
             }}
             autoComplete="true"
           />
-        </p>
-        <button onClick={tryLogin}>登录</button>
-        <button onClick={jumpRegister}>注册</button>
+        </div>
+        <div className="form-item">
+          <button onClick={tryLogin}>Log in</button>
+          <div>
+            <Link to="/user-register">注册新账号?</Link>
+          </div>
+        </div>
       </form>
     </div>
   )

@@ -1,0 +1,38 @@
+#register {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/loginImg.jpg');
+  text-align: center;
+  form {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 50px;
+    width: 400px;
+    border-radius: 8px;
+    border: none;
+    div {
+      label {
+        width: 100px;
+        display: inline-block;
+      }
+      input {
+        padding: 3px 10px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        border: none;
+      }
+    }
+    button {
+      padding: 5px 20px;
+      border-radius: 3px;
+      border: none;
+      &:first-of-type {
+        margin-right: 10px;
+      }
+      &:hover {
+        background-color: azure;
+      }
+    }
+  }
+}

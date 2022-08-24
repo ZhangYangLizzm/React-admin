@@ -1,33 +1,37 @@
-import { Dropdown, Space, Menu, Avatar } from 'antd'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
+import { Dropdown, Space, Menu, Avatar } from 'antd'
 import { SmileOutlined, UserOutlined, DownOutlined } from '@ant-design/icons'
+
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { fetchUserInfo } from '../../../store/userInfoSlice'
+import { selectUserName, selectUserAvatar } from '../../../store/userInfoSlice'
+
+import history from '../../../router/history'
 const UserDropdown = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchUserInfo())
+  }, [dispatch])
+
+  const username = useAppSelector(selectUserName)
+  const userAvatar = useAppSelector(selectUserAvatar)
+  const exitLogin = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    localStorage.removeItem('Authorization')
+    history.replace('/login')
+  }
   const menu = (
     <Menu
       items={[
         {
           key: '1',
-          label: (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.antgroup.com"
-            >
-              超级管理员
-            </a>
-          ),
+          label: <Link to="/personal-userInfo">个人信息</Link>,
         },
         {
           key: '2',
-          label: (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.aliyun.com"
-            >
-              退出
-            </a>
-          ),
+          label: <a onClick={exitLogin}>退出</a>,
           icon: <SmileOutlined />,
           danger: true,
         },
@@ -39,8 +43,8 @@ const UserDropdown = () => {
       <Dropdown overlay={menu}>
         <a onClick={(e) => e.preventDefault()}>
           <Space>
-            <Avatar size={36} icon={<UserOutlined />} />
-            张殃离
+            <Avatar size={36} icon={<UserOutlined />} src={userAvatar} />
+            {username}
             <DownOutlined />
           </Space>
         </a>

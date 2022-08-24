@@ -1,5 +1,12 @@
-import { Suspense, lazy } from 'react'
-import { BrowserRouter, Navigate, useRoutes } from 'react-router-dom'
+import { Suspense } from 'react'
+import {
+  Navigate,
+  useRoutes,
+  unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom'
+
+import history from './history'
+
 import Login from '../views/login/Login'
 import NewsSandBox from '../views/sandbox/NewsSandBox'
 import Home from '../views/sandbox/Home'
@@ -8,16 +15,14 @@ import RoleList from '../views/sandbox/RoleList'
 import RightList from '../views/sandbox/RightList'
 import NoPermission from '../views/sandbox/NoPermission'
 import UserRegister from '../views/register/UserRegister'
-// const NewsSandBox = lazy(() => import('../views/sandbox/NewsSandBox'))
-// const Home = lazy(() => import('../views/sandbox/Home'))
-// const UserList = lazy(() => import('../views/sandbox/UserList'))
-// const RoleList = lazy(() => import('../views/sandbox/RoleList'))
-// const RightList = lazy(() => import('../views/sandbox/RightList'))
-// const NoPermission = lazy(() => import('../views/sandbox/NoPermission'))
-
+import PersonalUserInfo from '../components/sandbox/PersonalUserInfo'
+import ModifyUserInfo from '../components/sandbox/ModifyUserInfo/ModifyUserInfo'
 const RouterElement = () => {
   const element = useRoutes([
-    { path: '/login', element: <Login /> },
+    {
+      path: '/login',
+      element: <Login />,
+    },
     { path: '/user-register', element: <UserRegister /> },
 
     {
@@ -29,9 +34,14 @@ const RouterElement = () => {
       ),
       children: [
         { path: '/home', element: <Home /> },
+        { path: '/personal-userInfo', element: <PersonalUserInfo /> },
         { path: '/user-manage', element: <UserList /> },
         { path: '/role-manage', element: <RoleList /> },
         { path: '/right-manage', element: <RightList /> },
+        {
+          path: '/modify-userInfo',
+          element: <ModifyUserInfo />,
+        },
         { path: '*', element: <NoPermission /> },
       ],
     },
@@ -42,9 +52,9 @@ const RouterElement = () => {
 const BaseRouter = () => {
   return (
     <Suspense>
-      <BrowserRouter>
+      <HistoryRouter history={history}>
         <RouterElement />
-      </BrowserRouter>
+      </HistoryRouter>
     </Suspense>
   )
 }
