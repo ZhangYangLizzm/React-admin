@@ -1,43 +1,38 @@
-import { Table } from 'antd'
 import { useState } from 'react'
-const initialState = [
-  {
-    key: '1',
-    name: '胡彦斌',
-    age: 32,
-    address: '西湖区湖底公园1号',
-  },
-  {
-    key: '2',
-    name: '胡彦祖',
-    age: 42,
-    address: '西湖区湖底公园1号',
-  },
-]
+import { useSelector } from 'react-redux'
+import { Table } from 'antd'
+import type { ColumnsType } from 'antd/es/table'
+import { selectAuthList } from '../../store/AuthListSlice'
+import { Item } from '../../components/sandbox/SideMenu'
 
-const columns = [
+const columns: ColumnsType<Item> = [
   {
-    title: '姓名',
-    dataIndex: 'name',
-    key: 'name',
+    title: '菜单项',
+    dataIndex: 'label',
+    key: 'page',
   },
   {
-    title: '年龄',
-    dataIndex: 'age',
-    key: 'age',
+    title: '路径',
+    dataIndex: 'key',
+    key: 'path',
   },
   {
-    title: '住址',
-    dataIndex: 'address',
-    key: 'address',
+    title: '是否拥有',
+    dataIndex: 'pagepermission',
+    key: 'permission',
   },
 ]
 
 const RightList = () => {
-  const [dataSource, setDataSource] = useState(initialState)
+  const authList = useSelector(selectAuthList)
+
   return (
     <div>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table
+        dataSource={authList}
+        columns={columns}
+        pagination={{ position: ['bottomCenter'] }}
+      />
     </div>
   )
 }

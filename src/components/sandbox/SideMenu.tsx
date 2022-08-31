@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-
-import { Layout, Menu, MenuItemProps, SiderProps } from 'antd'
+import { useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Layout, Menu } from 'antd'
 import type { MenuProps } from 'antd'
 const { Sider } = Layout
 import {
@@ -9,25 +9,19 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons'
 
+import {
+  selectAuthList,
+  selectCollapsed,
+  selectFilterAuthList,
+} from '../../store/AuthListSlice'
 import './SideMenu.css'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { getAuthData } from '../../api'
+import { RootState } from '../../store/store'
+
 export interface Item {
   key: string
   label: string
   pagepermission: number
-  children: Item[]
-}
-const filterAuthList = (authData: Item[]) => {
-  const items = authData.map((item) => {
-    if (item.pagepermission) {
-      if (item.children) {
-        item.children = filterAuthList(item.children) as Item[]
-      }
-      return item
-    }
-  })
-  return items
+  children?: Item[]
 }
 
 type MenuItem = Required<MenuProps>['items'][number]
@@ -35,18 +29,9 @@ type MenuItem = Required<MenuProps>['items'][number]
 const SideMenu = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [collapsed, setCollapsed] = useState(false)
-  const [items, setItems] = useState<Item[]>([])
+  const collapsed = useSelector(selectCollapsed)
+  const items = useSelector(selectFilterAuthList)
 
-  useEffect(() => {
-    getAuthData().then((res: any) => {
-      setItems(filterAuthList(res) as any)
-    })
-  }, [])
-
-  const itemClick = (e: MenuItem) => {
-    navigate(`${e!.key}`)
-  }
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo">全球新闻发布系统</div>
@@ -56,7 +41,7 @@ const SideMenu = () => {
         defaultSelectedKeys={['/home']}
         selectedKeys={[location.pathname]}
         items={items}
-        onClick={itemClick}
+        onClick={(e: MenuItem) => navigate(`${e!.key}`)}
       />
     </Sider>
   )
