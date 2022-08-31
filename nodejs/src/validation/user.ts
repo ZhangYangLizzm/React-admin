@@ -68,7 +68,7 @@ const validatePassword = (req: Request, res: Response, next: NextFunction) => {
 }
 
 const validatePicture = (req: Request, res: Response, next: NextFunction) => {
-  const { error } = picture.validate(req.body.picture)
+  const { error } = picture.validate(req.fields?.picture)
   if (error) {
     return res.status(405).send({ status: 500, message: error.message })
   }

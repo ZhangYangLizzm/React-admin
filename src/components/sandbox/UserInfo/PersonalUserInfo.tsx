@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux'
 import { Button } from 'antd'
 import { Descriptions } from 'antd'
-import { selectUserInfoData } from '../../store/userInfoSlice'
-import { Link } from 'react-router-dom'
+import { selectUserInfoData } from '../../../store/userInfoSlice'
 import './PersonalUserInfo.less'
+import ModifyUserPicture from './ModifyUserInfo/ModifyUserPicture'
+import { useState } from 'react'
 const PersonalUserInfo = () => {
   const userInfos = useSelector(selectUserInfoData)
+  const [changing, setChanging] = useState(false)
   const content = (
     <Descriptions title="User info" style={{ width: '700px' }} bordered={true}>
       <Descriptions.Item label="Avatar">
@@ -24,10 +26,11 @@ const PersonalUserInfo = () => {
     <div id="PersonalUserInfo">
       {content}
       <div id="changeUserInfo">
-        <Link to="/modify-userInfo">
-          <Button type="primary">修改个人信息</Button>
-        </Link>
+        <Button type="primary" onClick={() => setChanging(!changing)}>
+          修改个人信息
+        </Button>
       </div>
+      {changing && <ModifyUserPicture />}
     </div>
   )
 }

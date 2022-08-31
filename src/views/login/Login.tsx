@@ -8,13 +8,14 @@ const login = () => {
   const navigate = useNavigate()
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const tryLogin = async (e: React.MouseEvent) => {
     e.preventDefault()
     try {
       await request_login(account, md5(password).toString())
       navigate('/home')
     } catch (err) {
-      alert((err as any).response.data)
+      setErrorMessage((err as any).response.data)
     }
   }
   return (
@@ -48,6 +49,7 @@ const login = () => {
           <div>
             <Link to="/user-register">注册新账号?</Link>
           </div>
+          <p>{errorMessage}</p>
         </div>
       </form>
     </div>

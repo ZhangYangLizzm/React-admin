@@ -1,0 +1,38 @@
+#modify-user-picture {
+  form {
+    .upLoadImg {
+      border: 1px dashed rgb(217, 217, 217);
+      width: 100px;
+      height: 100px;
+      padding: 3px;
+      background-color: #fafafa;
+      box-sizing: content-box;
+      &:hover {
+        border-color: rgb(117, 139, 139);
+      }
+      .uploadSpan {
+        input[type='file'] {
+          display: none;
+        }
+        img {
+          width: 100px;
+          aspect-ratio: 1/1;
+        }
+        #loading {
+          span {
+            font-size: 30px;
+          }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          height: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+    .submitButton {
+      margin-top: 8px;
+    }
+  }
+}

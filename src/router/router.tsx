@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 import {
   Navigate,
   useRoutes,
@@ -10,13 +10,15 @@ import history from './history'
 import Login from '../views/login/Login'
 import NewsSandBox from '../views/sandbox/NewsSandBox'
 import Home from '../views/sandbox/Home'
-import UserList from '../views/sandbox/UserList'
-import RoleList from '../views/sandbox/RoleList'
-import RightList from '../views/sandbox/RightList'
-import NoPermission from '../views/sandbox/NoPermission'
-import UserRegister from '../views/register/UserRegister'
-import PersonalUserInfo from '../components/sandbox/PersonalUserInfo'
-import ModifyUserInfo from '../components/sandbox/ModifyUserInfo/ModifyUserInfo'
+const UserList = lazy(() => import('../views/sandbox/UserList'))
+const RoleList = lazy(() => import('../views/sandbox/RoleList'))
+const RightList = lazy(() => import('../views/sandbox/RightList'))
+const NoPermission = lazy(() => import('../views/sandbox/NoPermission'))
+const UserRegister = lazy(() => import('../views/register/UserRegister'))
+const PersonalUserInfo = lazy(() =>
+  import('../components/sandbox/UserInfo/PersonalUserInfo'),
+)
+
 const RouterElement = () => {
   const element = useRoutes([
     {
@@ -38,10 +40,6 @@ const RouterElement = () => {
         { path: '/user-manage', element: <UserList /> },
         { path: '/role-manage', element: <RoleList /> },
         { path: '/right-manage', element: <RightList /> },
-        {
-          path: '/modify-userInfo',
-          element: <ModifyUserInfo />,
-        },
         { path: '*', element: <NoPermission /> },
       ],
     },

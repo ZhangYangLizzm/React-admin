@@ -6,6 +6,7 @@ import express, {
 } from 'express'
 import cors from 'cors'
 import { expressjwt } from 'express-jwt'
+import formidable from 'express-formidable'
 import { secretKey } from './config'
 
 import userRouter from './router/user'
@@ -14,9 +15,13 @@ import swaggerui from 'swagger-ui-express'
 
 import userInfoRouter from './router/userinfo'
 const app = express()
-//响应json和表单
-app.use(express.json())
-app.use(express.urlencoded({ extended: false, limit: Math.pow(1024, 16) }))
+
+// //解析Json
+// app.use(express.json({ limit: '1000kb' }))
+// //将表单数据转换为Json
+// app.use(express.urlencoded({ extended: false, limit: '1000kb' }))
+//解析'multipart/form-data'
+app.use(formidable())
 //跨域
 app.use(cors())
 //令牌解析
@@ -42,9 +47,9 @@ const errorHandler: ErrorRequestHandler = (
       message: '令牌认证失败',
     })
   }
-  res.send({
+  res.status(500).send({
     status: 500,
-    message: '服务器错误',
+    message: '未捕捉到的服务器错误',
   })
 }
 

@@ -11,6 +11,7 @@ import { selectUserName, selectUserAvatar } from '../../../store/userInfoSlice'
 import history from '../../../router/history'
 const UserDropdown = () => {
   const dispatch = useAppDispatch()
+  //获取用户信息
   useEffect(() => {
     dispatch(fetchUserInfo())
   }, [dispatch])

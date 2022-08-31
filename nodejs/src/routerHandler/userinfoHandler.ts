@@ -52,7 +52,7 @@ const resetUserPasswordHandler = (
   next: NextFunction,
 ) => {
   const { userId } = req.auth!
-  const { password, newPassword } = req.body
+  const { password, newPassword } = req.fields!
   database.query(
     'select password from users where userId=?',
     userId,
@@ -61,13 +61,13 @@ const resetUserPasswordHandler = (
         return next(err)
       }
 
-      if (bcrypt.compareSync(password, results[0].password)) {
+      if (bcrypt.compareSync(password as string, results[0].password)) {
         return res.send({
           status: 405,
           message: '密码错误',
         })
       }
-      const newPwd = bcrypt.hashSync(newPassword)
+      const newPwd = bcrypt.hashSync(newPassword as string)
       database.query(
         'update users set ? where userId=?',
         [{ password: newPwd }, userId],
@@ -88,13 +88,15 @@ const updateUserPictureHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  const user_picture = req.body.picture
   const { userId } = req.auth!
+  const user_picture = req.fields?.picture
+
   database.query(
     'update users set ? where userId=?',
     [{ user_picture }, userId],
     (err, results) => {
       if (err) {
+        console.log('err', err)
         return next(err)
       }
       return res.send({
@@ -105,43 +107,11 @@ const updateUserPictureHandler = (
   )
 }
 //获取权限信息
-const getAuthHandler = (req: JWTRequest, res: Response, next: NextFunction) => {
-  res.send([
-    {
-      key: '/home',
-      label: '首页',
-    },
-    {
-      key: '/user',
-      label: '用户管理',
-      children: [
-        {
-          key: '/user-manage',
-          label: '用户列表',
-        },
-      ],
-    },
-    {
-      key: '/role',
-      label: '权限管理',
-      children: [
-        {
-          key: '/role-manage',
-          label: '角色列表',
-        },
-        {
-          key: '/right-manage',
-          label: '权限列表',
-        },
-      ],
-    },
-  ])
-}
+
 
 export {
   userInfoHandler,
   updateUserInfoHandler,
   resetUserPasswordHandler,
   updateUserPictureHandler,
-  getAuthHandler,
 }

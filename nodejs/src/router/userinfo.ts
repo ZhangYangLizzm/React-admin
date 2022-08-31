@@ -1,17 +1,19 @@
 import express from 'express'
-import {
-  userInfoHandler,
-  updateUserInfoHandler,
-  resetUserPasswordHandler,
-  updateUserPictureHandler,
-  getAuthHandler,
-} from '../routerHandler/userinfoHandler'
 
 import {
   validateUserInfo,
   validatePassword,
   validatePicture,
 } from '../validation/user'
+
+import {
+  userInfoHandler,
+  updateUserInfoHandler,
+  resetUserPasswordHandler,
+  updateUserPictureHandler,
+} from '../routerHandler/userinfoHandler'
+
+import { getAuthHandler } from '../routerHandler/userAuthHandler'
 
 const router = express.Router()
 

@@ -12,6 +12,23 @@ import {
 import './SideMenu.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getAuthData } from '../../api'
+export interface Item {
+  key: string
+  label: string
+  pagepermission: number
+  children: Item[]
+}
+const filterAuthList = (authData: Item[]) => {
+  const items = authData.map((item) => {
+    if (item.pagepermission) {
+      if (item.children) {
+        item.children = filterAuthList(item.children) as Item[]
+      }
+      return item
+    }
+  })
+  return items
+}
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -19,11 +36,11 @@ const SideMenu = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const [collapsed, setCollapsed] = useState(false)
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState<Item[]>([])
 
   useEffect(() => {
     getAuthData().then((res: any) => {
-      setItems(res)
+      setItems(filterAuthList(res) as any)
     })
   }, [])
 

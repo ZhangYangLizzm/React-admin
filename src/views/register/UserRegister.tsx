@@ -11,16 +11,12 @@ const userRegister = () => {
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
 
   const tryRegister = async (e: React.MouseEvent) => {
     e.preventDefault()
-    try {
-      await request_register(username, email, account, md5(password).toString())
-      navigate('/login')
-    } catch (err) {
-      setErrorMessage((err as any).response.data.err)
-    }
+
+    await request_register(username, email, account, md5(password).toString())
+    navigate('/login')
   }
 
   return (

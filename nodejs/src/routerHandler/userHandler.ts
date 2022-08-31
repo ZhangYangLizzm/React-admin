@@ -15,7 +15,7 @@ const sendStr = (err: string, status = 500) => {
 }
 
 const registerHandler = (req: Request, res: Response, next: NextFunction) => {
-  const userinfo = req.body
+  const userinfo = req.fields!
 
   database.query(searchByUserNameSqlStr, userinfo.account, (err, results) => {
     if (err) {
@@ -24,7 +24,7 @@ const registerHandler = (req: Request, res: Response, next: NextFunction) => {
     if (results.length) {
       return res.status(412).send(sendStr('用户名已被占用', 417))
     }
-    userinfo.password = bcrypt.hashSync(userinfo.password, 10)
+    userinfo.password = bcrypt.hashSync(userinfo.password as string, 10)
     database.query(insertStr, userinfo, (err, results) => {
       if (err) {
         return next(err)
@@ -41,7 +41,7 @@ const registerHandler = (req: Request, res: Response, next: NextFunction) => {
 }
 
 const loginHandler = (req: Request, res: Response, next: NextFunction) => {
-  const userinfo = req.body
+  const userinfo = req.fields!
   database.query(searchByUserNameSqlStr, userinfo.account, (err, results) => {
     if (err) {
       return next(err)
@@ -49,7 +49,10 @@ const loginHandler = (req: Request, res: Response, next: NextFunction) => {
     if (results.length !== 1) {
       return res.status(400).send('用户名不存在')
     }
-    const flag = bcrypt.compareSync(userinfo.password, results[0].password)
+    const flag = bcrypt.compareSync(
+      userinfo.password as string,
+      results[0].password,
+    )
     if (!flag) {
       return res.status(400).send('用户密码错误')
     }

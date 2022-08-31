@@ -23,5 +23,15 @@ export const getUserInfoData = async () =>
 export const getAuthData = async () =>
   request({ url: 'user/getAuth', method: 'GET' })
 
-export const updateUserPicture = async (picture: string) =>
-  request({ url: 'user/updateUserPicture', method: 'POST', data: { picture } })
+// export const updateUserPicture = async (picture: string) =>
+//   request({
+//     url: 'user/updateUserPicture',
+//     method: 'POST',
+//     data: picture,
+//   })
+export const updateUserPicture = async (imgFormData: FormData) =>
+  request({
+    url: 'user/updateUserPicture',
+    method: 'POST',
+    data: imgFormData,
+  })
