@@ -10,15 +10,15 @@ import {
 } from '@ant-design/icons'
 
 import {
-  selectAuthList,
   selectCollapsed,
   selectFilterAuthList,
 } from '../../store/AuthListSlice'
 import './SideMenu.css'
-import { RootState } from '../../store/store'
 
 export interface Item {
+  id: number
   key: string
+  pid: number
   label: string
   pagepermission: number
   children?: Item[]

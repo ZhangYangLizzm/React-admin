@@ -9,6 +9,7 @@
     "node:dev": "nodemon nodejs/src/main.ts -i ./src"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.5",
     "@types/crypto-js": "^4.1.1",
     "@types/nprogress": "^0.2.0",
