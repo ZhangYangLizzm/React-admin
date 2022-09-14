@@ -9,8 +9,7 @@ const login = () => {
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
-  const tryLogin = async (e: React.MouseEvent) => {
-    e.preventDefault()
+  const tryLogin = async () => {
     try {
       await request_login(account, md5(password).toString())
       navigate('/home')
@@ -45,7 +44,9 @@ const login = () => {
           />
         </div>
         <div className="form-item">
-          <button onClick={tryLogin}>Log in</button>
+          <button onClick={tryLogin} type="button">
+            Log in
+          </button>
           <div>
             <Link to="/user-register">注册新账号?</Link>
           </div>

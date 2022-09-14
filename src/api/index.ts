@@ -1,3 +1,4 @@
+import { ChangedAuthList } from '../views/sandbox'
 import request from './request'
 
 //注册
@@ -19,19 +20,21 @@ export const request_login = async (account: string, password: string) => {
 export const getUserInfoData = async () =>
   request({ url: 'user/getUserinfo', method: 'GET' })
 
-//获取权限信息
-export const getAuthData = async () =>
-  request({ url: 'user/getAuth', method: 'GET' })
-
-// export const updateUserPicture = async (picture: string) =>
-//   request({
-//     url: 'user/updateUserPicture',
-//     method: 'POST',
-//     data: picture,
-//   })
 export const updateUserPicture = async (imgFormData: FormData) =>
   request({
     url: 'user/updateUserPicture',
     method: 'POST',
     data: imgFormData,
   })
+
+//获取权限信息
+export const getAuthData = async () =>
+  request({ url: 'auth/getAuth', method: 'GET' })
+//修改权限信息
+export const changeAuth = async (changedAuthList: ChangedAuthList) => {
+  return request({
+    url: `auth/changeAuth`,
+    method: 'POST',
+    data:  changedAuthList ,
+  })
+}

@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Dropdown, Space, Menu, Avatar } from 'antd'
 import { SmileOutlined, UserOutlined, DownOutlined } from '@ant-design/icons'
 
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { fetchUserInfo } from '../../../store/userInfoSlice'
+import { useAppSelector } from '../../../store/hooks'
 import { selectUserName, selectUserAvatar } from '../../../store/userInfoSlice'
 
 import history from '../../../router/history'
 const UserDropdown = () => {
-  const dispatch = useAppDispatch()
-  //获取用户信息
-  useEffect(() => {
-    dispatch(fetchUserInfo())
-  }, [dispatch])
-
   const username = useAppSelector(selectUserName)
   const userAvatar = useAppSelector(selectUserAvatar)
   const exitLogin = (e: React.MouseEvent<HTMLAnchorElement>) => {

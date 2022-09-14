@@ -13,24 +13,6 @@ const initialState: State = {
   collapsed: false,
 }
 
-//扁平化结果转树形结构 arrayToTree
-const arrayToTree = (arr: Item[], id: number): Item[] => {
-  const res = []
-  for (const item of arr) {
-    if (item.pid === id) {
-      // 找到当前id的子元素
-      // 插入子元素，每个子元素的children通过回调生成
-      const children = arrayToTree(arr, item.id)
-      if (children.length !== 0) {
-        res.push({ ...item, children: arrayToTree(arr, item.id) })
-      } else {
-        res.push(item)
-      }
-    }
-  }
-  return res
-}
-
 export const fetchAuthData = createAsyncThunk(
   'authData/fetchAuthData',
   async () => {
@@ -49,7 +31,7 @@ export const authListSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(fetchAuthData.fulfilled, (state, action) => {
-      state.authList = arrayToTree(action.payload, 0)
+      state.authList = action.payload
     })
   },
 })
@@ -61,7 +43,6 @@ export const selectCollapsed = (state: RootState) => state.auth.collapsed
 export const selectAuthList = (state: RootState) => state.auth.authList
 
 //递归过滤权限列表
-
 const filterAuthList = (authData: Item[]): Item[] => {
   const items = authData.map((item) => {
     if (item.pagepermission) {
@@ -80,4 +61,5 @@ export const selectFilterAuthList = (state: RootState) => {
   const authList = JSON.parse(JSON.stringify(state.auth.authList))
   return filterAuthList(authList)
 }
+
 export default authListSlice.reducer

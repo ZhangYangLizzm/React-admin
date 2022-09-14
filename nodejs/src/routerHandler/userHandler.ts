@@ -24,7 +24,9 @@ const registerHandler = (req: Request, res: Response, next: NextFunction) => {
     if (results.length) {
       return res.status(412).send(sendStr('用户名已被占用', 417))
     }
+    //加密
     userinfo.password = bcrypt.hashSync(userinfo.password as string, 10)
+    //插入数据
     database.query(insertStr, userinfo, (err, results) => {
       if (err) {
         return next(err)

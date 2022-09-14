@@ -14,6 +14,7 @@ import swaggerSpec from './swagger'
 import swaggerui from 'swagger-ui-express'
 
 import userInfoRouter from './router/userinfo'
+import authRouter from './router/auth'
 const app = express()
 
 // //解析Json
@@ -33,6 +34,7 @@ app.use(
 //路由
 app.use('/news-global/api', userRouter)
 app.use('/news-global/user', userInfoRouter)
+app.use('/news-global/auth', authRouter)
 app.use('/swaggerDocs', swaggerui.serve, swaggerui.setup(swaggerSpec))
 //错误处理回调
 const errorHandler: ErrorRequestHandler = (

@@ -3,17 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import type { MenuProps } from 'antd'
 const { Sider } = Layout
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons'
 
 import {
+  fetchAuthData,
   selectCollapsed,
   selectFilterAuthList,
 } from '../../store/AuthListSlice'
 import './SideMenu.css'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../../store/hooks'
 
 export interface Item {
   id: number
@@ -27,14 +25,20 @@ export interface Item {
 type MenuItem = Required<MenuProps>['items'][number]
 
 const SideMenu = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
   const collapsed = useSelector(selectCollapsed)
   const items = useSelector(selectFilterAuthList)
 
+  const navigate = useNavigate()
+  const location = useLocation()
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
-      <div className="logo">全球新闻发布系统</div>
+    <Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      collapsedWidth="70px"
+    >
+      <div className="logo">{collapsed ? '新闻' : '新闻发布系统'}</div>
+
       <Menu
         theme="dark"
         mode="inline"
