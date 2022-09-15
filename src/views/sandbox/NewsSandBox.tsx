@@ -3,8 +3,17 @@ import SideMenu from '../../components/sandbox/SideMenu'
 import TopHeader from '../../components/sandbox/TopHeader/TopHeader'
 import { Layout } from 'antd'
 import './NewsSandbox.css'
+import { useEffect } from 'react'
+import { fetchAuthData } from '../../store/AuthListSlice'
+import { useAppDispatch } from '../../store/hooks'
+import { fetchUserInfo } from '../../store/userInfoSlice'
 const { Content } = Layout
 const NewsSandBox = () => {
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchAuthData())
+    dispatch(fetchUserInfo())
+  }, [dispatch])
   return (
     <Layout>
       <SideMenu />

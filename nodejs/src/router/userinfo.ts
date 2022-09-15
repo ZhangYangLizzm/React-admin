@@ -13,7 +13,6 @@ import {
   updateUserPictureHandler,
 } from '../routerHandler/userinfoHandler'
 
-import { getAuthHandler } from '../routerHandler/userAuthHandler'
 
 const router = express.Router()
 
@@ -25,5 +24,4 @@ router.post('/resetUserPassword', validatePassword, resetUserPasswordHandler)
 
 router.post('/updateUserPicture', validatePicture, updateUserPictureHandler)
 
-router.get('/getAuth', getAuthHandler)
 export default router

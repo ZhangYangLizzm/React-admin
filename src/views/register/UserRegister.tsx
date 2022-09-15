@@ -13,8 +13,6 @@ const userRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const tryRegister = async (e: React.MouseEvent) => {
-    e.preventDefault()
-
     await request_register(username, email, account, md5(password).toString())
     navigate('/login')
   }
@@ -79,8 +77,12 @@ const userRegister = () => {
             autoComplete="true"
           />
         </div>
-        <button onClick={() => history.push('/login')}>返回登录页</button>
-        <button onClick={tryRegister}>注册</button>
+        <button onClick={() => history.push('/login')} type="button">
+          返回登录页
+        </button>
+        <button onClick={tryRegister} type="button">
+          注册
+        </button>
       </form>
     </div>
   )
