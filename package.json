@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "node:dev": "nodemon nodejs/src/main.ts -i ./src"
+    "node:dev": "nodemon nodejs/src/main.ts -i ./src",
+    "start": "yarn node:dev && yarn dev"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

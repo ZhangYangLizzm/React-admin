@@ -26,7 +26,7 @@ router.post('/register', validateUserRegister, registerHandler)
 
 /**
  * @swagger
- * /api/register:
+ * /api/login:
  *  post:
  *    tags:
  *      - 用户

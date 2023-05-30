@@ -15,6 +15,8 @@ import swaggerui from 'swagger-ui-express'
 
 import userInfoRouter from './router/userinfo'
 import authRouter from './router/auth'
+
+import fileCloudRouter from './router/fileCloud'
 const app = express()
 
 // //解析Json
@@ -22,20 +24,26 @@ const app = express()
 // //将表单数据转换为Json
 // app.use(express.urlencoded({ extended: false, limit: '1000kb' }))
 //解析'multipart/form-data'
-app.use(formidable())
-//跨域
+app.use(formidable({
+  multiples:true,
+  keepExtensions:true,
+}))
+//配置跨域
 app.use(cors())
 //令牌解析
 app.use(
   expressjwt({ secret: secretKey, algorithms: ['HS256'] }).unless({
-    path: [/^\/news-global\/api\//, /^\/swaggerDocs\//],
+    path: [/^\/news-global\/api\//, /^\/swagger/],
   }),
 )
+const PREFIX='/news-global'
 //路由
-app.use('/news-global/api', userRouter)
-app.use('/news-global/user', userInfoRouter)
-app.use('/news-global/auth', authRouter)
-app.use('/swaggerDocs', swaggerui.serve, swaggerui.setup(swaggerSpec))
+app.use(`${PREFIX}/api`, userRouter)
+app.use(`${PREFIX}/user`, userInfoRouter)
+app.use(`${PREFIX}/auth`, authRouter)
+app.use(`${PREFIX}/fileCloud`, fileCloudRouter)
+
+app.use('/swagger', swaggerui.serve, swaggerui.setup(swaggerSpec))
 //错误处理回调
 const errorHandler: ErrorRequestHandler = (
   err: Error,
@@ -43,6 +51,8 @@ const errorHandler: ErrorRequestHandler = (
   res: Response,
   next: NextFunction,
 ) => {
+  console.log(err);
+  
   if (err.name === 'UnauthorizedError') {
     return res.status(401).send({
       status: 401,

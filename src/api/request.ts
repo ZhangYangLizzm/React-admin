@@ -7,9 +7,9 @@ const request = axios.create({
 
 request.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    Nprogress.start()
     config.headers!['Authorization'] =
       localStorage.getItem('Authorization') || ''
-    Nprogress.start()
     return config
   },
   (err) => {
@@ -27,7 +27,6 @@ request.interceptors.response.use(
     if (err.response.data.status === 401) {
       history.push('/login')
     }
-
     return Promise.reject(err)
   },
 )

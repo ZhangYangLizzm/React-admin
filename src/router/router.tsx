@@ -10,6 +10,7 @@ import history from './history'
 import Login from '../views/login/Login'
 import NewsSandBox from '../views/sandbox/NewsSandBox'
 import Home from '../views/sandbox/Home'
+import FileCloud  from '../views/FileCloud'
 const UserList = lazy(() => import('../views/sandbox/UserList'))
 const RoleList = lazy(() => import('../views/sandbox/RoleList'))
 const RightList = lazy(() => import('../views/sandbox/RightList'))
@@ -40,6 +41,7 @@ const RouterElement = () => {
         { path: '/user-manage', element: <UserList /> },
         { path: '/role-manage', element: <RoleList /> },
         { path: '/right-manage', element: <RightList /> },
+        { path: '/file-cloud', element: <FileCloud /> },
         { path: '*', element: <NoPermission /> },
       ],
     },
@@ -49,7 +51,7 @@ const RouterElement = () => {
 
 const BaseRouter = () => {
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
       <HistoryRouter history={history}>
         <RouterElement />
       </HistoryRouter>

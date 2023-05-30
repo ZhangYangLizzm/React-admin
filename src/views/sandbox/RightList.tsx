@@ -5,11 +5,13 @@ import { debounce } from 'lodash'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { fetchAuthData, selectAuthList } from '../../store/AuthListSlice'
 import { Item } from '../../components/sandbox/SideMenu'
-import { ActionProps, ChangedAuthList } from '.'
-import { changeAuth } from '../../api'
+import { ActionProps, ChangedAuthList } from './type'
+import { modifyAuth } from '../../api'
 import { useAppDispatch } from '../../store/hooks'
 
+// 记录修改的权限列
 let changedAuthList: ChangedAuthList = []
+
 const Action: React.FC<ActionProps> = ({ item }) => {
   const checkedChange = debounce((itemId: number, checked: boolean) => {
     let exist: boolean | null = false
@@ -66,19 +68,24 @@ const columns: ColumnsType<Item> = [
 const RightList = () => {
   const authList = useSelector(selectAuthList)
   const dispatch = useAppDispatch()
+
+  const changeAuth=async()=>{
+    //修改权限
+    await modifyAuth(changedAuthList)
+    // 修改权限后重新拉取权限信息
+    dispatch(fetchAuthData)
+  }
+
   return (
     <div>
       <Button
         type="primary"
         style={{ float: 'right', marginBottom: '10px' }}
-        onClick={() => {
-          console.log(changedAuthList)
-          changeAuth(changedAuthList)
-          dispatch(fetchAuthData)
-        }}
+        onClick={changeAuth}
       >
         确认修改
       </Button>
+
       <Table
         dataSource={authList}
         columns={columns}

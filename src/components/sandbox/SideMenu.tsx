@@ -37,7 +37,7 @@ const SideMenu = () => {
       collapsed={collapsed}
       collapsedWidth="70px"
     >
-      <div className="logo">{collapsed ? '新闻' : '新闻发布系统'}</div>
+      <div className="logo">{collapsed ? '后台' : '后台系统'}</div>
 
       <Menu
         theme="dark"

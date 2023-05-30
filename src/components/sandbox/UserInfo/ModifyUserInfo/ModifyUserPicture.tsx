@@ -21,7 +21,7 @@ const ModifyUserPicture = () => {
   }
   const handleFileChange = (e: React.FormEvent<HTMLInputElement>) => {
     const input = e.target as HTMLInputElement
-    const files = (e.target as HTMLInputElement).files
+    const files = input.files
     if (files && files[0]) {
       const file = files[0]
       if (file.size > 1024 * 1024) {
@@ -63,10 +63,10 @@ const ModifyUserPicture = () => {
               )}
             </span>
           </div>
+          <Button type="primary" onClick={submitPicture} className="submitButton">
+            上传头像
+          </Button>
         </div>
-        <Button type="primary" onClick={submitPicture} className="submitButton">
-          上传头像
-        </Button>
       </form>
     </div>
   )

@@ -22,7 +22,7 @@ export const fetchAuthData = createAsyncThunk(
 )
 
 export const authListSlice = createSlice({
-  name: 'userInfo',
+  name: 'auth',
   initialState,
   reducers: {
     changeCollapsed(state) {

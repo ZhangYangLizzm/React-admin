@@ -6,7 +6,7 @@ const options = {
     info: {
       title: '项目名称',
       version: '1.0.0',
-      description: ` 首次尝试swagger`,
+      description: `swagger`,
     },
   },
   apis: [path.join(__dirname, '/router/*.ts')],
