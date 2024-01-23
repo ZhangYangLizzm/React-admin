@@ -1,0 +1,38 @@
+"filename", "language", "TypeScript", "XML", "TypeScript JSX", "Less", "CSS", "comment", "blank", "total"
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\App.less", "Less", 0, 0, 0, 23, 0, 0, 2, 25
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\App.tsx", "TypeScript JSX", 0, 0, 15, 0, 0, 0, 7, 22
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\assets\react.svg", "XML", 0, 1, 0, 0, 0, 0, 0, 1
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\404page\404page.css", "CSS", 0, 0, 0, 0, 99, 0, 12, 111
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\404page\404page.tsx", "TypeScript JSX", 0, 0, 17, 0, 0, 0, 1, 18
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Charts\BarChart.tsx", "TypeScript JSX", 0, 0, 96, 0, 0, 1, 4, 101
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Charts\PieChart.tsx", "TypeScript JSX", 0, 0, 46, 0, 0, 0, 1, 47
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Charts\ScatterChart.tsx", "TypeScript JSX", 0, 0, 255, 0, 0, 1, 10, 266
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\ClipBoard\ClipBoard.less", "Less", 0, 0, 0, 14, 0, 1, 1, 16
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\ClipBoard\ClipBoard.tsx", "TypeScript JSX", 0, 0, 67, 0, 0, 8, 10, 85
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\ClipBoard\handlers.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 4, 24
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\ClipBoard\type.d.ts", "TypeScript", 16, 0, 0, 0, 0, 0, 2, 18
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\DashBoard\Home.less", "Less", 0, 0, 0, 27, 0, 0, 1, 28
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\DashBoard\HomeCharts\HomeCharts.tsx", "TypeScript JSX", 0, 0, 368, 0, 0, 0, 4, 372
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\DashBoard\TodoList\TodoList.less", "Less", 0, 0, 0, 64, 0, 0, 1, 65
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\DashBoard\TodoList\TodoList.tsx", "TypeScript JSX", 0, 0, 63, 0, 0, 0, 5, 68
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\DashBoard\index.tsx", "TypeScript JSX", 0, 0, 59, 0, 0, 0, 5, 64
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Execl\ExcelDownload.tsx", "TypeScript JSX", 0, 0, 67, 0, 0, 1, 4, 72
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Execl\ExcelExport.tsx", "TypeScript JSX", 0, 0, 34, 0, 0, 0, 5, 39
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Execl\ExeclTable.tsx", "TypeScript JSX", 0, 0, 32, 0, 0, 2, 3, 37
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Execl\UploadFiles.tsx", "TypeScript JSX", 0, 0, 33, 0, 0, 3, 4, 40
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Layout\Breadcrumb.tsx", "TypeScript JSX", 0, 0, 11, 0, 0, 0, 3, 14
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Layout\Menu.tsx", "TypeScript JSX", 0, 0, 46, 0, 0, 0, 6, 52
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\components\Layout\index.tsx", "TypeScript JSX", 0, 0, 46, 0, 0, 3, 3, 52
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\main.tsx", "TypeScript JSX", 0, 0, 12, 0, 0, 0, 1, 13
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\router\router.tsx", "TypeScript JSX", 0, 0, 53, 0, 0, 0, 5, 58
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\store\excel.ts", "TypeScript", 42, 0, 0, 0, 0, 0, 9, 51
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\store\hooks.ts", "TypeScript", 4, 0, 0, 0, 0, 1, 2, 7
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\store\store.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 3, 13
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\store\type.d.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 1, 9
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\utils\Download.ts", "TypeScript", 9, 0, 0, 0, 0, 0, 0, 9
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\utils\FormatConverter.ts", "TypeScript", 10, 0, 0, 0, 0, 0, 1, 11
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\utils\OCR\Baidu_OCR.ts", "TypeScript", 46, 0, 0, 0, 0, 0, 13, 59
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\utils\OCR\OCR_key.ts", "TypeScript", 5, 0, 0, 0, 0, 0, 2, 7
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\utils\StorageUtils.ts", "TypeScript", 7, 0, 0, 0, 0, 0, 2, 9
+"c:\Users\zhangyangli\Desktop\react-admin-antd\react-admin-hooks\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 1, 1, 2
+"Total", "-", 177, 1, 1320, 128, 99, 22, 138, 1885
