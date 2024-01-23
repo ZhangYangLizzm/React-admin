@@ -1,10 +1,15 @@
 import ReactECharts from "echarts-for-react";
 import * as echarts from "echarts";
-interface LineChartOptionsType {
-  [key: string]: any;
+
+export enum LineChartKey {
+  "NewVisits" = "NewVisits",
+  "Messages" = "Messages",
+  "Purchases" = "Purchases",
+  "Shoppings" = "Shoppings",
 }
-const LineChartOptions: LineChartOptionsType = {
-  "New Visits": {
+
+const LineChartOptions: Record<LineChartKey, object> = {
+  [LineChartKey.NewVisits]: {
     title: {
       text: "Stacked Line",
     },
@@ -66,7 +71,7 @@ const LineChartOptions: LineChartOptionsType = {
       },
     ],
   },
-  Messages: {
+  [LineChartKey.Messages]: {
     xAxis: {
       type: "category",
       data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -81,7 +86,7 @@ const LineChartOptions: LineChartOptionsType = {
       },
     ],
   },
-  Purchases: {
+  [LineChartKey.Purchases]: {
     color: ["#80FFA5", "#00DDFF", "#37A2FF", "#FF0087", "#FFBF00"],
     title: {
       text: "Gradient Stacked Area Chart",
@@ -263,7 +268,7 @@ const LineChartOptions: LineChartOptionsType = {
       },
     ],
   },
-  Shoppings: {
+  [LineChartKey.Shoppings]: {
     title: {
       text: "Stacked Area Chart",
     },
@@ -361,16 +366,15 @@ const LineChartOptions: LineChartOptionsType = {
   },
 };
 
-const HomeCharts = ({
-  currentLineChartKey,
-}: {
-  currentLineChartKey: string;
-}) => {
+interface HomeChartsProps {
+  currentLineChartKey: LineChartKey;
+}
+const HomeCharts = ({ currentLineChartKey }: HomeChartsProps) => {
   const options = LineChartOptions[currentLineChartKey];
   return (
     <ReactECharts
       option={options}
-      className="home-chart"
+      className=" w-full"
       style={{ height: "400px" }}
       notMerge={true}
       lazyUpdate={true}
