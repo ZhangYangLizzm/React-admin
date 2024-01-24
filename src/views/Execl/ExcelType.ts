@@ -1,4 +1,4 @@
-export interface excelDataType {
+export interface ExcelDataStruct {
   key: React.Key;
   id: number | string;
   title: string;

@@ -2,35 +2,53 @@ import { Table, Tag } from "antd";
 import Column from "antd/es/table/Column";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import { TableRowSelection } from "antd/es/table/interface";
-import { excelDataType } from "./excelType";
+import { ExcelDataStruct } from "./excelType";
 
 interface ExeclTableProps {
-  dataSource: excelDataType[];
-  setSelectRows: React.Dispatch<React.SetStateAction<excelDataType[]>>;
+  dataSource: ExcelDataStruct[];
+  setSelectRows: React.Dispatch<React.SetStateAction<ExcelDataStruct[]>>;
 }
 const ExeclTable = ({ dataSource, setSelectRows }: ExeclTableProps) => {
-  const rowSelection: TableRowSelection<excelDataType> = {
+  const rowSelection: TableRowSelection<ExcelDataStruct> = {
     onChange: (selectedRowKeys, selectedRows) => {
       setSelectRows(selectedRows);
     },
   };
   return (
-    <>
-      <Table dataSource={dataSource} bordered rowSelection={rowSelection}>
-        <Column title="Id" dataIndex="id" key="id" />
-        <ColumnGroup title="Main Information">
-          <Column title="Title" dataIndex="title" key="title" />
-          <Column
-            title="Author"
-            dataIndex="author"
-            key="author"
-            render={(author: string) => <Tag color="blue">{author}</Tag>}
-          />
-          <Column title="Readings" dataIndex="readings" key="readings" />
-        </ColumnGroup>
-        <Column title="Date" dataIndex="date" key="date" />
-      </Table>
-    </>
+    <Table
+      dataSource={dataSource}
+      bordered
+      rowSelection={rowSelection}
+    >
+      <Column
+        title="Id"
+        dataIndex="id"
+        key="id"
+      />
+      <ColumnGroup title="Main Information">
+        <Column
+          title="Title"
+          dataIndex="title"
+          key="title"
+        />
+        <Column
+          title="Author"
+          dataIndex="author"
+          key="author"
+          render={(author: string) => <Tag color="blue">{author}</Tag>}
+        />
+        <Column
+          title="Readings"
+          dataIndex="readings"
+          key="readings"
+        />
+      </ColumnGroup>
+      <Column
+        title="Date"
+        dataIndex="date"
+        key="date"
+      />
+    </Table>
   );
 };
 

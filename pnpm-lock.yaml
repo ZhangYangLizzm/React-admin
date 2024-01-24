@@ -14,6 +14,9 @@ dependencies:
   antd:
     specifier: ^5.13.2
     version: 5.13.2(react-dom@18.2.0)(react@18.2.0)
+  dayjs:
+    specifier: ^1.11.10
+    version: 1.11.10
   echarts:
     specifier: ^5.4.3
     version: 5.4.3

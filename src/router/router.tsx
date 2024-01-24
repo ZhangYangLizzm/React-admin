@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import { lazy } from "react";
 
 import Layout from "@/layouts/Layout";
+import Login from "@/views/login/Login";
 
 const DashBoard = lazy(() => import("@/views/dashBoard/Dashboard"));
 
@@ -18,10 +19,14 @@ const NotFoundPage = lazy(() => import("@/views/404page/404page"));
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: <Login />,
+    id: "Login",
+  },
+  {
     path: "/",
     element: <Layout />,
     id: "Layout",
-    errorElement: <h1>Error</h1>,
     children: [
       {
         path: "/dashboard",

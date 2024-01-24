@@ -1,39 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { Spin } from "antd";
-import ExeclDownload from "./ExcelDownload";
-import { useAppDispatch } from "@/store/hooks";
+import ExcelDownload from "./ExcelDownload";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   fetchExcel,
   selectExeclMockData,
   selectFetchError,
 } from "@/store/excel";
-import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import ExeclTable from "./ExcelTable";
-import { excelDataType } from "./excelType";
+import { ExcelDataStruct } from "./excelType";
+import { SuspenseStatus } from "@/constants/status";
 
 const ExeclExport: React.FC = () => {
   const dispatch = useAppDispatch();
-  const execlStatus = useSelector((state: RootState) => state.excel.status);
-  const tabelData = useSelector(selectExeclMockData);
-  const [selectedRows, setSelectRows] = useState<excelDataType[]>([]);
+  const execlStatus = useAppSelector((state: RootState) => state.excel.status);
+  const tabelData = useAppSelector(selectExeclMockData);
+  const [selectedRows, setSelectRows] = useState<ExcelDataStruct[]>([]);
 
   useEffect(() => {
-    if (execlStatus === "idle") {
+    if (execlStatus === SuspenseStatus.Idle) {
       dispatch(fetchExcel());
     }
   }, [execlStatus, dispatch]);
 
-  if (execlStatus === "loading") {
+  if (execlStatus === SuspenseStatus.Loading) {
     return <Spin />;
-  } else if (execlStatus === "failed") {
-    const error = useSelector(selectFetchError);
+  } else if (execlStatus === SuspenseStatus.Failed) {
+    const error = useAppSelector(selectFetchError);
     return <h1>{error}</h1>;
   } else {
     return (
       <>
-        <ExeclDownload dataSource={tabelData} selectedRows={selectedRows} />
-        <ExeclTable dataSource={tabelData} setSelectRows={setSelectRows} />
+        <ExcelDownload
+          dataSource={tabelData}
+          selectedRows={selectedRows}
+        />
+        <ExeclTable
+          dataSource={tabelData}
+          setSelectRows={setSelectRows}
+        />
       </>
     );
   }

@@ -2,10 +2,10 @@ import { Button, Input, message, Space } from "antd";
 import React, { useState } from "react";
 import Excel from "exceljs";
 import { execlDownloadClick } from "@/utils/Download";
-import { columns, excelDataType } from "./excelType";
+import { columns, ExcelDataStruct } from "./excelType";
 interface ExcelDownloadProps {
-  dataSource: excelDataType[];
-  selectedRows: excelDataType[];
+  dataSource: ExcelDataStruct[];
+  selectedRows: ExcelDataStruct[];
 }
 
 const ExcelDownload = ({ dataSource, selectedRows }: ExcelDownloadProps) => {
