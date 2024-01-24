@@ -1,12 +1,12 @@
-import { message, Upload, UploadProps } from "antd";
+import { message, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import Excel from "exceljs";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/es/upload";
 import { xlsxToArrayBuffer } from "@/utils/FormatConverter";
 import { useState } from "react";
-import ExeclTable from "./ExeclTable";
-import { excelDataType } from "./ExcelType";
-import { Headers } from "./ExcelType";
+import ExeclTable from "./ExcelTable";
+import { excelDataType } from "./excelType";
+import { Headers } from "./excelType";
 const { Dragger } = Upload;
 
 const DraggerPropsFC = (

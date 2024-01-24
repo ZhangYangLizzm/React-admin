@@ -1,4 +1,4 @@
-import { excelDataType } from "@/views/Execl/ExcelType";
+import { excelDataType } from "@/views/execl/excelType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 

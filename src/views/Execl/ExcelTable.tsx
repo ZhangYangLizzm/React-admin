@@ -2,7 +2,7 @@ import { Table, Tag } from "antd";
 import Column from "antd/es/table/Column";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import { TableRowSelection } from "antd/es/table/interface";
-import { excelDataType } from "./ExcelType";
+import { excelDataType } from "./excelType";
 
 interface ExeclTableProps {
   dataSource: excelDataType[];

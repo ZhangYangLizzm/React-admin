@@ -2,7 +2,7 @@
   "tabWidth": 2,
   "semi": true,
   "singleQuote": false,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "trailingComma": "all",
   "bracketSpacing": true,
   "singleAttributePerLine": true

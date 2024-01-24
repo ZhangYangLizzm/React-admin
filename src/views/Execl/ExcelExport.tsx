@@ -9,8 +9,8 @@ import {
 } from "@/store/excel";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import ExeclTable from "./ExeclTable";
-import { excelDataType } from "./ExcelType";
+import ExeclTable from "./ExcelTable";
+import { excelDataType } from "./excelType";
 
 const ExeclExport: React.FC = () => {
   const dispatch = useAppDispatch();

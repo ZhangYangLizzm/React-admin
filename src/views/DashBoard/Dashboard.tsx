@@ -3,7 +3,7 @@ import NewVisits from "@/assets/newVisits.png";
 import Messages from "@/assets/messages.png";
 import Purchases from "@/assets/purchases.png";
 import Shoppings from "@/assets/shoppings.png";
-import HomeCharts, { LineChartKey } from "./HomeCharts/HomeCharts";
+import HomeCharts, { LineChartKey } from "./homeCharts/HomeCharts";
 
 interface RowCardItemProps {
   srcPath: string;
@@ -57,7 +57,7 @@ const RowCardItems = [
   },
 ];
 
-const Home: React.FC = () => {
+const Dashboard: React.FC = () => {
   const defaultLineChartKey = LineChartKey.NewVisits;
   const [lineChartKey, setLineChartKey] =
     useState<LineChartKey>(defaultLineChartKey);
@@ -87,4 +87,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Dashboard;

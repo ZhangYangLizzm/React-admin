@@ -1,8 +1,8 @@
 import { Button, Input, message, Space } from "antd";
 import React, { useState } from "react";
-import Execl from "exceljs";
+import Excel from "exceljs";
 import { execlDownloadClick } from "@/utils/Download";
-import { columns, excelDataType } from "./ExcelType";
+import { columns, excelDataType } from "./excelType";
 interface ExcelDownloadProps {
   dataSource: excelDataType[];
   selectedRows: excelDataType[];
@@ -17,7 +17,7 @@ const ExcelDownload = ({ dataSource, selectedRows }: ExcelDownloadProps) => {
       return message.error("Please select at least one");
     }
     setButtonLoading(() => true);
-    const workbook = new Execl.Workbook();
+    const workbook = new Excel.Workbook();
     workbook.creator = "zhangyangli";
     workbook.created = new Date();
     workbook.modified = new Date();

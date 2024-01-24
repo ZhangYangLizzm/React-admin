@@ -1,18 +1,20 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import { lazy } from "react";
 
-import DashBoard from "../views/DashBoard";
-import NotFoundPage from "../views/404page/404page";
+import Layout from "@/layouts/Layout";
 
-import Layout from "@/layouts";
-import ExeclImport from "@/views/Execl/ExeclImport";
-import ChartsLayout from "@/views/Charts/ChartsLayout";
+const DashBoard = lazy(() => import("@/views/dashBoard/Dashboard"));
 
-const BarChart = lazy(() => import("../views/Charts/BarChart"));
-const PieChart = lazy(() => import("../views/Charts/PieChart"));
-const ScatterChart = lazy(() => import("../views/Charts/ScatterChart"));
-const ClipBoard = lazy(() => import("../views/ClipBoard/ClipBoard"));
-const ExeclExport = lazy(() => import("@/views/Execl/ExcelExport"));
+const BarChart = lazy(() => import("@/views/charts/BarChart"));
+const PieChart = lazy(() => import("@/views/charts/PieChart"));
+const ScatterChart = lazy(() => import("@/views/charts/ScatterChart"));
+
+const ClipBoard = lazy(() => import("@/views/clipBoard/ClipBoard"));
+
+const ExeclExport = lazy(() => import("@/views/execl/ExcelExport"));
+const ExeclImport = lazy(() => import("@/views/execl/ExcelImport"));
+
+const NotFoundPage = lazy(() => import("@/views/404page/404page"));
 
 const router = createBrowserRouter([
   {
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
             element: <PieChart />,
           },
           {
-            path: "line-chart",
+            path: "scatter-chart",
             id: "ScatterChart",
             element: <ScatterChart />,
           },
@@ -55,17 +57,17 @@ const router = createBrowserRouter([
       },
       {
         path: "excel",
-        id: "Execl",
+        id: "Excel",
         element: <Outlet />,
         children: [
           {
             path: "export",
-            id: "ExeclExport",
+            id: "ExcelExport",
             element: <ExeclExport />,
           },
           {
             path: "import",
-            id: "ExeclImport",
+            id: "ExcelImport",
             element: <ExeclImport />,
           },
         ],

@@ -1,11 +1,12 @@
-import { theme, Layout, Spin } from "antd";
-import { Header, Content, Footer } from "antd/es/layout/layout";
+import { Layout, Spin } from "antd";
+import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { Suspense, useState } from "react";
 import { Outlet } from "react-router-dom";
-import CustomizedBreadcrumb from "./Breadcrumb";
-import CustomizedMenu from "./Menu";
+import CustomizedMenu from "./sider/Menu";
 import reactIcon from "@/assets/react.svg";
+import MyHeader from "./header/MyHeader";
+import MySider from "./sider/MySider";
 
 //侧边栏Logo容器
 const SiderbarLogoContainer = () => {
@@ -30,21 +31,12 @@ const NewLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout className="h-full overflow-hidden">
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={value => setCollapsed(value)}
-        theme="light"
-      >
-        {/* //侧边栏Logo容器 */}
-        <SiderbarLogoContainer />
-        {/* 菜单栏 */}
-        <CustomizedMenu />
-      </Sider>
+      <MySider collapsed={collapsed} />
       <Layout className="site-layout">
-        <Header className="bg-white flex items-center">
-          <CustomizedBreadcrumb />
-        </Header>
+        <MyHeader
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
         <Content className="p-4">
           <div className="bg-white p-4 rounded-xl h-full">
             <Suspense fallback={<Spin />}>

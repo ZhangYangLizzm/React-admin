@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.less";
 import { RouterProvider } from "react-router-dom";
 import { message, Spin } from "antd";
 
@@ -11,7 +10,10 @@ const App: React.FC = () => {
   return (
     <>
       {messageContextHolder}
-      <RouterProvider router={router} fallbackElement={<Spin />} />
+      <RouterProvider
+        router={router}
+        fallbackElement={<Spin />}
+      />
     </>
   );
 };
