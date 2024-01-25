@@ -41,6 +41,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.21.3
     version: 6.21.3(react-dom@18.2.0)(react@18.2.0)
+  store:
+    specifier: ^2.0.12
+    version: 2.0.12
 
 devDependencies:
   '@types/echarts':
@@ -2915,6 +2918,10 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /store@2.0.12:
+    resolution: {integrity: sha512-eO9xlzDpXLiMr9W1nQ3Nfp9EzZieIQc10zPPMP5jsVV7bLOziSFFBP0XoDXACEIFtdI+rIz0NwWVA/QVJ8zJtw==}
+    dev: false
 
   /string-convert@0.2.1:
     resolution: {integrity: sha512-u/1tdPl4yQnPBjnVrmdLo9gtuLvELKsAoRapekWggdiQNvvvum+jYF329d84NAa660KQw7pB2n36KrIKVoXa3A==}

@@ -3,6 +3,7 @@ import { lazy } from "react";
 
 import Layout from "@/layouts/Layout";
 import Login from "@/views/login/Login";
+import Test from "@/views/Test";
 
 const DashBoard = lazy(() => import("@/views/dashBoard/Dashboard"));
 
@@ -76,6 +77,11 @@ const router = createBrowserRouter([
             element: <ExeclImport />,
           },
         ],
+      },
+      {
+        path: "test",
+        id: "Test",
+        element: <Test />,
       },
       {
         path: "*",
