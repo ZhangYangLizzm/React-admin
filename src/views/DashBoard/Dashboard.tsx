@@ -23,15 +23,15 @@ const RowCardItem = ({
     <div className="flex-grow p-4 bg-transparent">
       <div
         onClick={() => onClick(title)}
-        className={`${className} flex gap-8 items-center p-4 rounded-lg cursor-pointer hover:shadow-xl transition-all`}
+        className={`${className} flex gap-4 items-center p-4 rounded-lg cursor-pointer hover:shadow-lg transition-all`}
       >
         <img
           src={srcPath}
           className="w-16"
         />
-        <div className="flex flex-col justify-center flex-grow">
-          <p className="leading-none">{title}</p>
-          <p className="tracking-wider text-lg font-bold">{description}</p>
+        <div className="flex flex-col gap-4 flex-grow">
+          <p className="leading-none font-bold">{title}</p>
+          <p className="tracking-wider ">{description}</p>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ const Dashboard: React.FC = () => {
             description={description}
             onClick={(key: LineChartKey) => rowCardItemClickHandler(key, index)}
             key={title}
-            className={`${index === currentIndex ? "shadow-xl" : "shadow"}`}
+            className={`${index === currentIndex ? "shadow-lg" : "shadow"}`}
           />
         ))}
       </div>

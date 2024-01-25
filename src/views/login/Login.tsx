@@ -12,7 +12,7 @@ const SignUpTip = ({ setStatus }: StatusSetter) => {
       desc="Let's get your all set up so you can creating your first onboarding
     experience."
       buttonText="SIGN UP"
-      setStatus={(status) => setStatus(status)}
+      setStatus={() => setStatus(Status.SignUp)}
     />
   );
 };
@@ -24,7 +24,7 @@ const LoginTip = ({ setStatus }: StatusSetter) => {
       desc=" Log in to your account so you can continue building and editing your
         onboarding flows."
       buttonText="LOG IN"
-      setStatus={(status) => setStatus(status)}
+      setStatus={() => setStatus(Status.Login)}
     />
   );
 };
@@ -66,7 +66,7 @@ const Login = () => {
         >
           <div
             className={
-              `box-border border-0  w-0 h-0 border-r-[200px] border-solid border-r-transparent ` +
+              `box-border border-0  w-0 h-0 lg:border-r-[200px] md:border-r-[100px] border-solid border-r-transparent ` +
               (status === Status.Login
                 ? "order-1 border-b-[100vh] border-b-white bg-primary"
                 : "order-2 border-t-[100vh] border-t-primary bg-white")

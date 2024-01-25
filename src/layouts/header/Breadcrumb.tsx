@@ -1,11 +1,22 @@
 import React from "react";
 import { Breadcrumb } from "antd";
-import { useMatches } from "react-router-dom";
+import { Link, useMatches } from "react-router-dom";
 
-const CustomizedBreadcrumb: React.FC = () => {
+const RouteBreadcrumb: React.FC = () => {
   const matches = useMatches();
-  const matchIds = matches.map(item => ({ title: item.id }));
-  return <Breadcrumb items={matchIds} />;
+  const matchIds = matches.map((item) => ({
+    title: item.id,
+    path: item.pathname,
+  }));
+  
+  return (
+    <Breadcrumb
+      items={matchIds}
+      itemRender={(route) => {
+        return <Link to={route.path as string}>{route.title}</Link>;
+      }}
+    />
+  );
 };
 
-export default CustomizedBreadcrumb;
+export default RouteBreadcrumb;
