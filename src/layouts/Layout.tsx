@@ -38,8 +38,8 @@ const NewLayout = () => {
           setCollapsed={setCollapsed}
         />
         <Content className="p-4">
-          <div className="bg-white p-4 rounded-xl h-full">
-            <Suspense fallback={<Spin />}>
+          <div className="bg-white p-4 rounded-xl h-full flex items-center justify-center">
+            <Suspense fallback={<Spin size="large"/>}>
               <Outlet />
             </Suspense>
           </div>

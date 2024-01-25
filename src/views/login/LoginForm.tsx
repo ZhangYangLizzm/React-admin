@@ -1,6 +1,8 @@
 import { Channels } from "@/constants/channels";
+import { RememberUserStorageKey } from "@/constants/storage";
 import { Input, Checkbox, Button, Form } from "antd";
 import { useNavigate } from "react-router-dom";
+import store from "store";
 
 const LoginForm = () => {
   const [form] = Form.useForm();
@@ -10,6 +12,9 @@ const LoginForm = () => {
   const onLogin = async () => {
     const values = await form.validateFields();
     if (values) {
+      if (values.remember) {
+        store.set(RememberUserStorageKey, values.remember);
+      }
       navigate("/dashboard");
     }
   };
@@ -26,11 +31,21 @@ const LoginForm = () => {
       <Form
         form={form}
         layout="vertical"
+        initialValues={{
+          email: "React@react.com",
+          password: "React",
+        }}
       >
         <Form.Item
           label="Email"
           name="email"
-          rules={[{ required: true, message: "Please input your email" }]}
+          rules={[
+            {
+              required: true,
+              message: "Please input your email",
+              type: "email",
+            },
+          ]}
         >
           <Input placeholder="Enter your email address" />
         </Form.Item>
@@ -39,7 +54,7 @@ const LoginForm = () => {
           name="password"
           rules={[{ required: true, message: "Please input your password" }]}
         >
-          <Input placeholder="Enter yout password" />
+          <Input.Password placeholder="Enter yout password" />
         </Form.Item>
 
         <Form.Item>
