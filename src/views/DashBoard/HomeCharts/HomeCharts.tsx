@@ -1,5 +1,5 @@
 import ReactECharts from "echarts-for-react";
-import * as echarts from "echarts";
+import { graphic } from "echarts";
 
 export enum LineChartKey {
   "NewVisits" = "NewVisits",
@@ -138,7 +138,7 @@ const LineChartOptions: Record<LineChartKey, object> = {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
               color: "rgb(128, 255, 165)",
@@ -165,7 +165,7 @@ const LineChartOptions: Record<LineChartKey, object> = {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
               color: "rgb(0, 221, 255)",
@@ -192,7 +192,7 @@ const LineChartOptions: Record<LineChartKey, object> = {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
               color: "rgb(55, 162, 255)",
@@ -219,7 +219,7 @@ const LineChartOptions: Record<LineChartKey, object> = {
         showSymbol: false,
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
               color: "rgb(255, 0, 135)",
@@ -250,7 +250,7 @@ const LineChartOptions: Record<LineChartKey, object> = {
         },
         areaStyle: {
           opacity: 0.8,
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          color: new graphic.LinearGradient(0, 0, 0, 1, [
             {
               offset: 0,
               color: "rgb(255, 191, 0)",

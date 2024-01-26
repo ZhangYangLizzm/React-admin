@@ -1,7 +1,4 @@
-import { useHeight } from "@/hooks/useHeight";
-import { Spin } from "antd";
 import ReactEcharts from "echarts-for-react";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ChartWrap from "./ChartWrap";
 
 const option = {
@@ -101,7 +98,7 @@ const BarChart = () => {
         <ReactEcharts
           option={option}
           className="w-full"
-          style={{height}}
+          style={{ height }}
         />
       )}
     />

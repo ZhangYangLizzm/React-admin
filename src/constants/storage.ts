@@ -1,1 +1,0 @@
-export const RememberUserStorageKey='remember_user'

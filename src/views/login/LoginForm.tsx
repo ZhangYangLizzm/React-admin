@@ -1,5 +1,5 @@
 import { Channels } from "@/constants/channels";
-import { RememberUserStorageKey } from "@/constants/storage";
+import { RememberUserStorageKey } from "@/constants/storageKey";
 import { Input, Checkbox, Button, Form } from "antd";
 import { useNavigate } from "react-router-dom";
 import store from "store";

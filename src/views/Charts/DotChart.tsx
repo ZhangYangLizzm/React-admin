@@ -254,7 +254,7 @@ const option = {
   ],
 };
 
-const ScatterChart = () => {
+const DotChart = () => {
   return (
     <ChartWrap
       chart={(height: number) => (
@@ -268,4 +268,4 @@ const ScatterChart = () => {
   );
 };
 
-export default ScatterChart;
+export default DotChart;

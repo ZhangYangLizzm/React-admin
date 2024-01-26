@@ -1,5 +1,5 @@
-import { storageGet, storageSet } from "../StorageUtils";
-import { OCR_KEY } from "./OCR_key";
+import { OCR_KEY, OCR_TOKEN_KEY } from "@/constants/storageKey";
+import store from "store";
 class BaiDu_OCR {
   API_KEY: string;
   SECRET_KEY: string;
@@ -17,7 +17,7 @@ class BaiDu_OCR {
   }
 
   async OCR_URL() {
-    const token = storageGet("OCR_ACCESS_TOKEN");
+    const token = store.get(OCR_TOKEN_KEY);
     if (token) {
       return `/baiduApi/rest/2.0/ocr/v1/general_basic?access_token=${JSON.parse(token)}`;
     }
@@ -30,7 +30,7 @@ class BaiDu_OCR {
     });
 
     const data = await response.json();
-    storageSet("OCR_ACCESS_TOKEN", JSON.stringify(data.access_token));
+    store.set(OCR_TOKEN_KEY, data.access_token);
     return data.access_token;
   }
 

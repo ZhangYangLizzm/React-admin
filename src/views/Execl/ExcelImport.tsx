@@ -1,16 +1,16 @@
 import { message, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-import Excel from "exceljs";
+import { Workbook } from "exceljs";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/es/upload";
 import { xlsxToArrayBuffer } from "@/utils/FormatConverter";
 import { useState } from "react";
 import ExeclTable from "./ExcelTable";
-import { excelDataType } from "./excelType";
+import { ExcelDataStruct } from "./excelType";
 import { Headers } from "./excelType";
 const { Dragger } = Upload;
 
 const DraggerPropsFC = (
-  setTabelData: React.Dispatch<React.SetStateAction<excelDataType[]>>,
+  setTabelData: React.Dispatch<React.SetStateAction<ExcelDataStruct[]>>,
 ) => {
   return {
     height: 200,
@@ -20,7 +20,7 @@ const DraggerPropsFC = (
       const fileType = file.name.split(".").at(-1);
       if (fileType === "xlsx") {
         const buffer = await xlsxToArrayBuffer(file);
-        const workbook = new Excel.Workbook();
+        const workbook = new Workbook();
         await workbook.xlsx.load(buffer);
         const worksheet = workbook.getWorksheet(1);
         let tempArr: any[] = [];
@@ -46,12 +46,15 @@ const DraggerPropsFC = (
   };
 };
 const ExcelImport = () => {
-  const [tabelData, setTabelData] = useState<excelDataType[]>([]);
-  const [selectedRows, setSelectRows] = useState<excelDataType[]>([]);
+  const [tabelData, setTabelData] = useState<ExcelDataStruct[]>([]);
+  const [selectedRows, setSelectRows] = useState<ExcelDataStruct[]>([]);
   const DraggerProps = DraggerPropsFC(setTabelData);
   return (
     <>
-      <Dragger {...DraggerProps} style={{ marginBottom: "16px" }}>
+      <Dragger
+        {...DraggerProps}
+        style={{ marginBottom: "16px" }}
+      >
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
@@ -63,7 +66,10 @@ const ExcelImport = () => {
           company data or other band files
         </p>
       </Dragger>
-      <ExeclTable dataSource={tabelData} setSelectRows={setSelectRows} />
+      <ExeclTable
+        dataSource={tabelData}
+        setSelectRows={setSelectRows}
+      />
     </>
   );
 };

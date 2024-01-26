@@ -32,7 +32,16 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "ui-libs": ["antd"],
+          antd: ["antd"],
+          excel: ["exceljs"],
+          echarts: ["echarts"],
+          react: [
+            "react",
+            "@reduxjs/toolkit",
+            "react-dom",
+            "react-redux",
+            "react-router-dom",
+          ],
         },
       },
     },
