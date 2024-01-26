@@ -2,11 +2,11 @@ import { message, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { Workbook } from "exceljs";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/es/upload";
-import { xlsxToArrayBuffer } from "@/utils/FormatConverter";
 import { useState } from "react";
-import ExeclTable from "./ExcelTable";
+import ExcelTable from "./ExcelTable";
 import { ExcelDataStruct } from "./excelType";
 import { Headers } from "./excelType";
+import { fileToArrayBuffer } from "@/utils/fileReaderUtil";
 const { Dragger } = Upload;
 
 const DraggerPropsFC = (
@@ -15,45 +15,48 @@ const DraggerPropsFC = (
   return {
     height: 200,
     multiple: false,
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
     beforeUpload: async (file: RcFile) => {
       const fileType = file.name.split(".").at(-1);
       if (fileType === "xlsx") {
-        const buffer = await xlsxToArrayBuffer(file);
+        const buffer = await fileToArrayBuffer(file);
         const workbook = new Workbook();
         await workbook.xlsx.load(buffer);
-        const worksheet = workbook.getWorksheet(1);
-        let tempArr: any[] = [];
-        worksheet?.getSheetValues().forEach((value, index) => {
-          if (index > 1) {
-            (value as string[]).shift();
-            let tempObj: any = {};
-            (value as string[]).forEach((item, index2) => {
-              tempObj[Headers[index2]] = item;
+        const worksheet = workbook.getWorksheet();
+
+        const sheetData = worksheet
+          ?.getSheetValues()
+          ?.map((rowItem) => (rowItem as string[])?.filter((item) => !!item))
+          .slice(1);
+
+        if (sheetData?.length) {
+          const sheetHeader = sheetData[0];
+          const sheetContent = sheetData?.slice(1);
+          let tempArr: any[] = [];
+          sheetContent?.map((rowItem, rowIndex) => {
+            let tempObj: Record<string, string | number> = {};
+            (rowItem as string[]).map((rowValue, valueIndex) => {
+              tempObj[sheetHeader[valueIndex]] = rowValue;
             });
-            tempObj["key"] = index - 1;
             tempArr.push(tempObj);
-          }
-        });
-        setTabelData(tempArr);
+          });
+          setTabelData(tempArr);
+        }
       } else {
         message.error("only support xlsx");
       }
     },
-    onchange: (info: UploadChangeParam<UploadFile<any>>) => {
-      console.log(info);
-    },
   };
 };
+
 const ExcelImport = () => {
   const [tabelData, setTabelData] = useState<ExcelDataStruct[]>([]);
   const [selectedRows, setSelectRows] = useState<ExcelDataStruct[]>([]);
   const DraggerProps = DraggerPropsFC(setTabelData);
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <Dragger
         {...DraggerProps}
-        style={{ marginBottom: "16px" }}
+        showUploadList={false}
       >
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
@@ -66,11 +69,12 @@ const ExcelImport = () => {
           company data or other band files
         </p>
       </Dragger>
-      <ExeclTable
+
+      <ExcelTable
         dataSource={tabelData}
         setSelectRows={setSelectRows}
       />
-    </>
+    </div>
   );
 };
 

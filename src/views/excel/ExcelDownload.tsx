@@ -1,7 +1,7 @@
 import { Button, Input, message, Space } from "antd";
 import React, { useState } from "react";
 import Excel from "exceljs";
-import { execlDownloadClick } from "@/utils/Download";
+import { excelDownloadClick } from "@/utils/Download";
 import { columns, ExcelDataStruct } from "./excelType";
 interface ExcelDownloadProps {
   dataSource: ExcelDataStruct[];
@@ -9,7 +9,7 @@ interface ExcelDownloadProps {
 }
 
 const ExcelDownload = ({ dataSource, selectedRows }: ExcelDownloadProps) => {
-  const [fileName, setFileName] = useState("execl-list");
+  const [fileName, setFileName] = useState("excel-list");
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const exportClick = (clickType: "all" | "selected" | "multiHeader") => {
@@ -45,7 +45,7 @@ const ExcelDownload = ({ dataSource, selectedRows }: ExcelDownloadProps) => {
       };
     }
     workbook.xlsx.writeBuffer().then((buffer) => {
-      execlDownloadClick(buffer, fileName);
+      excelDownloadClick(buffer, fileName);
       setTimeout(() => {
         setButtonLoading(false);
       }, 1000);

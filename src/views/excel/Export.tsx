@@ -4,29 +4,29 @@ import ExcelDownload from "./ExcelDownload";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   fetchExcel,
-  selectExeclMockData,
+  selectExcelMockData,
   selectFetchError,
 } from "@/store/excel";
 import { RootState } from "@/store/store";
-import ExeclTable from "./ExcelTable";
+import ExcelTable from "./ExcelTable";
 import { ExcelDataStruct } from "./excelType";
 import { SuspenseStatus } from "@/constants/status";
 
-const ExeclExport: React.FC = () => {
+const ExcelExport: React.FC = () => {
   const dispatch = useAppDispatch();
-  const execlStatus = useAppSelector((state: RootState) => state.excel.status);
-  const tabelData = useAppSelector(selectExeclMockData);
+  const excelStatus = useAppSelector((state: RootState) => state.excel.status);
+  const tabelData = useAppSelector(selectExcelMockData);
   const [selectedRows, setSelectRows] = useState<ExcelDataStruct[]>([]);
 
   useEffect(() => {
-    if (execlStatus === SuspenseStatus.Idle) {
+    if (excelStatus === SuspenseStatus.Idle) {
       dispatch(fetchExcel());
     }
-  }, [execlStatus, dispatch]);
+  }, [excelStatus, dispatch]);
 
-  if (execlStatus === SuspenseStatus.Loading) {
+  if (excelStatus === SuspenseStatus.Loading) {
     return <Spin />;
-  } else if (execlStatus === SuspenseStatus.Failed) {
+  } else if (excelStatus === SuspenseStatus.Failed) {
     const error = useAppSelector(selectFetchError);
     return <h1>{error}</h1>;
   } else {
@@ -36,7 +36,7 @@ const ExeclExport: React.FC = () => {
           dataSource={tabelData}
           selectedRows={selectedRows}
         />
-        <ExeclTable
+        <ExcelTable
           dataSource={tabelData}
           setSelectRows={setSelectRows}
         />
@@ -45,4 +45,4 @@ const ExeclExport: React.FC = () => {
   }
 };
 
-export default ExeclExport;
+export default ExcelExport;

@@ -4,11 +4,11 @@ import ColumnGroup from "antd/es/table/ColumnGroup";
 import { TableRowSelection } from "antd/es/table/interface";
 import { ExcelDataStruct } from "./excelType";
 
-interface ExeclTableProps {
+interface ExcelTableProps {
   dataSource: ExcelDataStruct[];
   setSelectRows: React.Dispatch<React.SetStateAction<ExcelDataStruct[]>>;
 }
-const ExeclTable = ({ dataSource, setSelectRows }: ExeclTableProps) => {
+const ExcelTable = ({ dataSource, setSelectRows }: ExcelTableProps) => {
   const rowSelection: TableRowSelection<ExcelDataStruct> = {
     onChange: (selectedRowKeys, selectedRows) => {
       setSelectRows(selectedRows);
@@ -19,6 +19,7 @@ const ExeclTable = ({ dataSource, setSelectRows }: ExeclTableProps) => {
       dataSource={dataSource}
       bordered
       rowSelection={rowSelection}
+      rowKey="id"
     >
       <Column
         title="Id"
@@ -52,4 +53,4 @@ const ExeclTable = ({ dataSource, setSelectRows }: ExeclTableProps) => {
   );
 };
 
-export default ExeclTable;
+export default ExcelTable;

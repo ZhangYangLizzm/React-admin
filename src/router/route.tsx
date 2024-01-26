@@ -1,4 +1,4 @@
-import Layout from "@/layouts/Layout";
+import Layout from "@/layout/Layout";
 import Login from "@/views/login/Login";
 import { MenuRouteConfig } from "@/config/menuRouteConfig";
 import { generateMenuRoutes } from "@/utils/generateUtil";

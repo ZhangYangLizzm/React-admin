@@ -15,12 +15,16 @@ export const useHeight = () => {
       setTimeout(() => {
         setLoading(false);
       }, 300);
-      
+
       window.onresize = debounce(() => {
         const { height: newHeight } = div.getBoundingClientRect();
         setDivHeight(newHeight);
       }, 300);
     }
+
+    return () => {
+      window.onresize = null;
+    };
   }, []);
 
   return { divRef, loading, divHeight };

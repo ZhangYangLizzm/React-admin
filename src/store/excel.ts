@@ -1,4 +1,4 @@
-import { ExcelDataStruct } from "@/views/execl/excelType";
+import { ExcelDataStruct } from "@/views/excel/excelType";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { SuspenseStatus } from "@/constants/status";
@@ -8,10 +8,10 @@ interface ExcelState {
   error: string | undefined;
 }
 
-export const fetchExcel = createAsyncThunk("execl/fetchExeclData", async () => {
-  const response = await fetch("/easymock/execl-mock");
+export const fetchExcel = createAsyncThunk("excel/fetchExcelData", async () => {
+  const response = await fetch("/easymock/excel-mock");
   const data = await response.json();
-  return data.execl_mock;
+  return data.excel_mock;
 });
 
 const initialState: ExcelState = {
@@ -41,7 +41,7 @@ export const excelSlice = createSlice({
   },
 });
 
-export const selectExeclMockData = (state: RootState) => state.excel.excel_mock;
+export const selectExcelMockData = (state: RootState) => state.excel.excel_mock;
 
 export const selectFetchError = (state: RootState) => state.excel.error;
 

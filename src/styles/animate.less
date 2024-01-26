@@ -1,0 +1,55 @@
+@keyframes enter-x-animation {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes enter-y-animation {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.generate-enter-styles(@n) when (@n <= 5) {
+  @delay: @n * 0.1s;
+  @zIndex: 10 - @n;
+
+  * > .enter-x:nth-child(@{n}) {
+    transform: translateX(50px);
+  }
+
+  * > .-enter-x:nth-child(@{n}) {
+    transform: translateX(-50px);
+  }
+
+  * > .enter-y:nth-child(@{n}) {
+    transform: translateY(50px);
+  }
+
+  * > .-enter-y:nth-child(@{n}) {
+    transform: translateY(-50px);
+  }
+
+  * > .enter-x:nth-child(@{n}),
+  * > .-enter-x:nth-child(@{n}) {
+    z-index: @zIndex;
+    opacity: 0;
+    animation: enter-x-animation 0.4s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: @delay;
+  }
+
+  * > .enter-y:nth-child(@{n}),
+  * > .-enter-y:nth-child(@{n}) {
+    z-index: @zIndex;
+    opacity: 0;
+    animation: enter-y-animation 0.4s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: @delay;
+  }
+
+  .generate-enter-styles(@n + 1);
+}
+
+.generate-enter-styles(1);

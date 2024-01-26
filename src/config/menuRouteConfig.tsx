@@ -20,8 +20,8 @@ const DotChart = lazy(() => import("@/views/charts/DotChart"));
 
 const ClipBoard = lazy(() => import("@/views/clipBoard/ClipBoard"));
 
-const ExeclExport = lazy(() => import("@/views/execl/ExcelExport"));
-const ExeclImport = lazy(() => import("@/views/execl/ExcelImport"));
+const ExcelExport = lazy(() => import("@/views/excel/Export"));
+const ExcelImport = lazy(() => import("@/views/excel/Import"));
 
 const NotFoundPage = lazy(() => import("@/views/404page/404page"));
 
@@ -92,7 +92,7 @@ export const MenuRouteConfig: MenuRouteConfigStruct[] = [
         label: "Excel导入",
         key: "ExcelImport",
         icon: <ImportOutlined />,
-        element: <ExeclImport />,
+        element: <ExcelImport />,
       },
       {
         type: "link",
@@ -100,7 +100,7 @@ export const MenuRouteConfig: MenuRouteConfigStruct[] = [
         label: "Excel导出",
         key: "ExcelExport",
         icon: <ExportOutlined />,
-        element: <ExeclExport />,
+        element: <ExcelExport />,
       },
     ],
   },

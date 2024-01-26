@@ -1,15 +1,14 @@
-import { RcFile } from "antd/es/upload";
-const blobToBase64 = (imgBlob: Blob) => {
-  return new Promise((resolve, reject) => {
+const blobToBase64 = (blob: Blob) => {
+  return new Promise<string>((resolve, reject) => {
     const fileReaer = new FileReader();
     fileReaer.onload = (e) => {
-      resolve(e.target?.result);
+      resolve(e.target?.result as string);
     };
-    fileReaer.readAsDataURL(imgBlob);
+    fileReaer.readAsDataURL(blob);
   });
 };
 
-const xlsxToArrayBuffer = (file: RcFile) => {
+const fileToArrayBuffer = (file: File) => {
   return new Promise<ArrayBuffer>((resolve, reject) => {
     let reader = new FileReader();
     reader.readAsArrayBuffer(file);
@@ -18,4 +17,5 @@ const xlsxToArrayBuffer = (file: RcFile) => {
     };
   });
 };
-export { blobToBase64, xlsxToArrayBuffer };
+
+export { blobToBase64, fileToArrayBuffer };
